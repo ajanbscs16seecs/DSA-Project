@@ -7,11 +7,13 @@ package com.seecs.dsa;
 
 /**
  *
- * @author arifu
+ * @author arif
+ * 
  */
 public class DSA {
     void main(String[] args){
         //hahah
+        //arif - initial setup
     }
     
 }
