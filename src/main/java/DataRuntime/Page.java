@@ -5,22 +5,13 @@
  */
 package DataRuntime;
 
-import java.util.List;
-
 /**
  *
  * @author Arif
  */
-public class PageText {
-    
-    List<String> headings1;
-    List<String> headings2;    
-    List<String> headings3;
-    List<Word> words;
-    
-    List<Word> links;
-  
-    
-    
-    
+public class Page {
+ 
+    int pageId;
+    String pageTitle;
+    PageText pageText;
 }

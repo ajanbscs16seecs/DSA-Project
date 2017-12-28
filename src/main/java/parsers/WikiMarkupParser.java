@@ -3,23 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataRuntime;
-
-import java.util.List;
+package parsers;
 
 /**
  *
  * @author Arif
  */
-public class PageText {
+public class WikiMarkupParser {
     
-    List<String> headings1;
-    List<String> headings2;    
-    List<String> headings3;
-    List<Word> words;
     
-    List<Word> links;
-  
+    
     
     
     
