@@ -3,23 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DataRuntime;
+package DataIndexed;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
  *
  * @author Arif
+ * 
+ * 
  */
-public class PageText {
+public class ForwardIndex implements Serializable{
     
-    List<String> headings1;
-    List<String> headings2;    
-    List<String> headings3;
-    List<Word> words;
-    
-    List<Word> links;
-  
+    //use hashtable for words
     
     
     
