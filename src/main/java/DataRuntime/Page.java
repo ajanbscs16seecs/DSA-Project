@@ -5,6 +5,9 @@
  */
 package DataRuntime;
 
+import java.util.HashMap;
+import java.util.List;
+
 /**
  *
  * @author Arif
@@ -13,5 +16,15 @@ public class Page {
  
     int pageId;
     String pageTitle;
-    PageText pageText;
+    List<Word> pageText;
+    
+   
+    int k(){
+//        pageText.
+        return 0;
+    }
+    
+    
+    
+    
 }

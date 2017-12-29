@@ -11,5 +11,5 @@ package parsers;
  */
 public class ReqexHelper {
     //[\[]{2}[a-zA-Z)0-9\s]+|[a-zA-Z)0-9\s]+[\]]{2} for links
-    
+    public static String REGEX_LINK = "/[\\[]{2}[a-zA-Z)0-9\\s]+|[a-zA-Z)0-9\\s]+[\\]]{2}/g";
 }
