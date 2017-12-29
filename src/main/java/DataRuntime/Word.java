@@ -12,12 +12,13 @@ package DataRuntime;
 public class Word {
     
     
-    public static class Type{
-        public static int HEADING1=1;
-        public static int HEADING2=2;
-        public static int HEADING3=3;
-        public static int SIMPLE=0;
-        public static int LINK=10;
+    public static  final class Type{
+        public static  final int H1=1;
+        public static  final int H2=2;
+        public static  final int H3=3;
+        public static  final int SIMPLE=0;
+        public static  final int LINK=10;        
+        public static  final int TITLE=100;
     }
     
     
@@ -30,6 +31,8 @@ public class Word {
         this.word = word;
         this.type = type;
     }
+    
+    
     
     
 

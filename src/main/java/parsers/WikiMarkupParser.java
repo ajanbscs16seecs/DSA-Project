@@ -16,45 +16,132 @@ import java.util.regex.Pattern;
  * @author Arif
  */
 public class WikiMarkupParser {
-    
 
     public static String REGEX_LINK = "[\\[]{2}[a-zA-Z)0-9\\s]+|[a-zA-Z)0-9\\s]+[\\]]{2}";
     public static String REGEX_WORD = "\\w+";
-    public static String REGEX_HEADING1 = "[\\=]+[a-zA-Z)0-9\\s]+[\\=]+";
-    public static String REGEX_HEADING2 = "\\w+";
-    public static String REGEX_HEADING3 = "\\w+";
-    public static String REGEX_TITLE = "\\w+";
+    public static String REGEX_H1 = "[\\=]{1}[a-zA-Z)0-9\\s]+[\\=]{1}";
+    public static String REGEX_H2 = "[\\=]{2}[a-zA-Z)0-9\\s]+[\\=]{2}";
+    public static String REGEX_H3 = "[\\=]{3}[a-zA-Z)0-9\\s]+[\\=]{3}";
+    public static String REGEX_TITLE = "[']{3}[a-zA-Z)0-9\\s]+[']{3}";
     
-    //[=]{1}[\w+][=]{1}
     
+    private static WikiMarkupParser instance = null;
+
+    String text;
+    List<Word> wordsFound = new ArrayList<Word>();
+    public WikiMarkupParser(String text) {
+        this.text=text;
+    }
+
+    
+    public void resetForOtherText(String text){
+        this.text=text;
+        this.wordsFound=new ArrayList<Word>();
+    }
 
     
     
-
-
-     
-    public static List<Word> getWords(String text){
-        
-        Pattern pattern = Pattern.compile(REGEX_HEADING1);
-        List<Word> wordsFound = new ArrayList<Word>();
-        // in case you would like to ignore case sensitivity,
-        // you could use this statement:
-        // Pattern pattern = Pattern.compile("\\s+", Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(text);
-        
-        // check all occurance
-        while (matcher.find()) {
-//            System.out.println("[\\[]{2}[a-zA-Z)0-9\\s]+ :" +matcher.group("[\\[]{2}[a-zA-Z)0-9\\s]+"));
-//            
-//            System.out.println("[a-zA-Z)0-9\\s]+[\\]]{2} :" +matcher.group("[a-zA-Z)0-9\\s]+[\\]]{2}"));
-//            Word temp = new Word();
-//            wordsFound.add(matcher.group());
-            System.out.println(matcher.group());
-            
-        }
-
+    public void process(){
+        collectTitles();
+        collectH3();
+        collectH2();
+        collectH1();
+        collectWords();
+    }
+    
+    
+    public List<Word> getResult(){
         return wordsFound;
     }
-       
     
+    
+    
+    
+    
+    
+    
+    
+
+    private void collectTitles() {
+
+        Pattern pattern = Pattern.compile(REGEX_TITLE);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+
+            String temp = matcher.group();
+            temp=temp.replace("'", "");
+            temp=temp.trim();
+            System.out.println(temp);
+            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.TITLE));
+        }
+        text = text.replaceAll(REGEX_TITLE, "");
+    }
+
+    private void collectH1() {
+
+        Pattern pattern = Pattern.compile(REGEX_H1);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+
+            String temp = matcher.group();
+            System.out.println(temp);
+            temp=temp.replace("=", "");
+            temp=temp.trim();
+            System.out.println(temp);
+            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.H1));
+        }
+        
+        text = text.replaceAll(REGEX_H1, "");
+    }
+
+    private void collectH2() {
+
+        Pattern pattern = Pattern.compile(REGEX_H2);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+
+            String temp = matcher.group();
+            System.out.println(temp);
+            temp=temp.replace("=", "");
+            temp=temp.trim();
+            System.out.println(temp);
+            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.H2));
+        }
+        
+        text = text.replaceAll(REGEX_H2, "");
+    }
+
+    private void collectH3() {
+
+        Pattern pattern = Pattern.compile(REGEX_H3);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+
+            String temp = matcher.group();
+            System.out.println(temp);
+            temp=temp.replace("=", "");
+            temp=temp.trim();
+            System.out.println(temp);
+            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.H3));
+        }
+        text = text.replaceAll(REGEX_H3, "");
+    }
+
+    private void collectWords() {
+
+        Pattern pattern = Pattern.compile(REGEX_WORD);
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()) {
+
+            String temp = matcher.group();
+            System.out.println(temp);
+            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.SIMPLE));
+        }
+    }
+
 }
