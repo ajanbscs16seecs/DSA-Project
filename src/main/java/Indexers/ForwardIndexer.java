@@ -5,6 +5,8 @@
  */
 package Indexers;
 
+import DataIndexed.ForwardIndex;
+
 /**
  *
  * @author Arif
