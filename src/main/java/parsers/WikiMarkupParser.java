@@ -20,7 +20,7 @@ public class WikiMarkupParser {
 
     public static String REGEX_LINK = "[\\[]{2}[a-zA-Z)0-9\\s]+|[a-zA-Z)0-9\\s]+[\\]]{2}";
     public static String REGEX_WORD = "\\w+";
-    public static String REGEX_HEADING1 = "[=]{1}[\\w+\\s+][=]{1}";
+    public static String REGEX_HEADING1 = "[\\=]+[a-zA-Z)0-9\\s]+[\\=]+";
     public static String REGEX_HEADING2 = "\\w+";
     public static String REGEX_HEADING3 = "\\w+";
     public static String REGEX_TITLE = "\\w+";
