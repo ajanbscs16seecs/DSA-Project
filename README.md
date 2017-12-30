@@ -21,7 +21,7 @@ commit is just like saving your changes locally.
 
 - First make sure you have selected all the colored files in project.
 
-- Go to team->commit
+- Go to `team->commit`
 
 - make sure the correct branch name appears on the dialog window.(the one you created)
 
