@@ -5,6 +5,8 @@
  */
 package xml.parsing;
 
+import javax.xml.parsers.DocumentBuilderFactory;
+
 /**
  *
  * @author Hassan Javed
@@ -15,7 +17,7 @@ public class XmlParsing {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        DocumentBuilderFactory factory;
     }
     
 }
