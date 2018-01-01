@@ -88,7 +88,7 @@ public class Indexer implements WikiXMLParserCallback {
     public void onNewPageParsed(Page page) {
         List<Word> wordsReport = new WikiMarkupParser(page).process();
         //int pageId, String title, String importanceFactor, HashMap<String, List<LocationAndType>> wordInstances
-        XPage xpage = new XPage(page.getPageId(),page.getPageTitle(),1,indexer.generateHashMapOfWords(wordsReport));
+        XPage xpage = new XPage(page.getPageId(),page.getPageTitle(),1,generateHashMapOfWords(wordsReport));
         this.next(xpage);
         this.callback.onProgress();
     }
