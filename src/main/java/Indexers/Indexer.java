@@ -10,30 +10,40 @@ import Data.Word;
 import DataIndexed.Index;
 import DataIndexed.LocationAndType;
 import DataIndexed.XPage;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import parsers.WikiMarkupParser;
+import parsers.WikiXMLParser;
+import parsers.WikiXMLParser.WikiXMLParserCallback;
 
 /**
  *
  * @author Arif
  */
-public class Indexer {
+public class Indexer implements WikiXMLParserCallback {
 
     Index index;
+    
+    
+    IndexingCallbacks callback;
+
+    public Indexer(Index index,IndexingCallbacks callback) {
+        this.index = index;
+        this.callback =callback;
+    }
 
     public Indexer(Index index) {
         this.index = index;
     }
+    
 
     public void init() {
 
     }
 
-    public void next(XPage xpage) throws Exception {
-        if (index == null) {
-            throw new Exception("Indexed not present");
-        }
+    public void next(XPage xpage){
         index.pageMap.put(xpage.getPageId(), xpage);
 
     }
@@ -75,4 +85,25 @@ public class Indexer {
         return wordInstances;
     }
 
+    public void onNewPageParsed(Page page) {
+        List<Word> wordsReport = new WikiMarkupParser(page).process();
+        //int pageId, String title, String importanceFactor, HashMap<String, List<LocationAndType>> wordInstances
+        XPage xpage = new XPage(page.getPageId(),page.getPageTitle(),1,indexer.generateHashMapOfWords(wordsReport));
+        this.next(xpage);
+        this.callback.onProgress();
+    }
+
+    public void onAllParsed() {
+        callback.done();
+    }
+    
+    
+        
+    public interface IndexingCallbacks{
+        void onProgress();
+        void done();
+    }
+    
+    
+    
 }

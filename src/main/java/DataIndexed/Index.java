@@ -17,8 +17,13 @@ import java.util.List;
  */
 public class Index implements Serializable{
     
+    
     public HashMap<Integer,XPage> pageMap;//pagesId->words
     public HashMap<String,List<Integer>> invertedIndex;//word_strings->pages
+    
+    
+    
+    public List<Integer> pageIdsSortedByImportanceFactor;
    
     
     

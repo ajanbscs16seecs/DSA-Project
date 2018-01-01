@@ -5,7 +5,16 @@
  */
 package main;
 
+import Data.Page;
+import Data.Word;
+import DataIndexed.Index;
+import DataIndexed.XPage;
+import Indexers.Indexer;
+import java.io.File;
+import java.util.List;
 import parsers.WikiMarkupParser;
+import parsers.WikiXMLParser;
+import parsers.WikiXMLParser.WikiXMLParserCallback;
 
 /**
  *
@@ -32,11 +41,28 @@ public class DSA {
 //        List<Word> temp = WikiMarkupParser.getWords(EXAMPLE_TEST);
 
 
-        WikiMarkupParser pageParser = new WikiMarkupParser(EXAMPLE_TEST);
-        pageParser.process();
+
+
+
+
+
+
+
+
+
         
-        System.out.println(pageParser.getResult().toString());
         
         
+    }
+    
+    void  indexingProcedure(){
+        
+        
+        
+        
+        final Indexer indexer = new Indexer(new Index());//TODO: temporary...
+        
+        WikiXMLParser xmlParser = new WikiXMLParser(new File("path to file"), (WikiXMLParserCallback)indexer);
+
     }
 }

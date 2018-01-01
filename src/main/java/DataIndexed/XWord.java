@@ -12,7 +12,7 @@ import java.util.List;
  * @author Arif
  */
 public class XWord {
-    List<LocationAndType> instances;
+    List<LocationAndType> instances;//the size of list is the frequency....
     String word;
     
 }

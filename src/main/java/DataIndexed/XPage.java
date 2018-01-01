@@ -14,13 +14,17 @@ import java.util.List;
  */
 public class XPage {
     int pageId;
+    String title;
+    int importanceFactor;
     HashMap<String,List<LocationAndType>> wordInstances;//for a word the page will have multiple instances represented by location and type
 
-    public XPage(int pageId, HashMap<String, List<LocationAndType>> wordInstances) {
+    public XPage(int pageId, String title, int importanceFactor, HashMap<String, List<LocationAndType>> wordInstances) {
         this.pageId = pageId;
+        this.title = title;
+        this.importanceFactor = importanceFactor;
         this.wordInstances = wordInstances;
     }
-
+    
     
     
     public int getPageId() {

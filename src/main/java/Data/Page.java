@@ -5,6 +5,7 @@
  */
 package Data;
 
+import DataIndexed.XPage;
 import java.util.HashMap;
 import java.util.List;
 
@@ -17,6 +18,13 @@ public class Page {
     int pageId;
     String pageTitle;
     String pageText;
+
+    public Page(int pageId, String pageTitle, String pageText) {
+        this.pageId = pageId;
+        this.pageTitle = pageTitle;
+        this.pageText = pageText;
+    }
+    
     
     
     
@@ -34,6 +42,12 @@ public class Page {
         return pageTitle;
     }
 
+    public String getPageText() {
+        return pageText;
+    }
+
+    
+    
   
     
     

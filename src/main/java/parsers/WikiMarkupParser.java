@@ -5,6 +5,7 @@
  */
 package parsers;
 
+import Data.Page;
 import Data.Word;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,34 +26,28 @@ public class WikiMarkupParser {
     public static String REGEX_TITLE = "[']{3}[a-zA-Z)0-9\\s]+[']{3}";
     
     
-    private static WikiMarkupParser instance = null;
 
-    String text;
-    List<Word> wordsFound = new ArrayList<Word>();
-    public WikiMarkupParser(String text) {
-        this.text=text;
+    private String text;
+    private List<Word> wordsFound;
+
+    public WikiMarkupParser(Page page) {
+        text = page.getPageText();
+        wordsFound =  new ArrayList<Word>();
+        wordsFound.add(new Word(wordsFound.size(), page.getPageTitle(), Word.Type.TITLE));
     }
-
     
-    public void resetForOtherText(String text){
-        this.text=text;
-        this.wordsFound=new ArrayList<Word>();
-    }
+   
+    
 
     
     
-    public void process(){
-        collectTitles();
+    public List<Word> process(){
+        
+        collectBolds();
         collectH3();
         collectH2();
         collectH1();
         collectWords();
-        
-        
-    }
-    
-    
-    public List<Word> getResult(){
         return wordsFound;
     }
     
@@ -63,8 +58,10 @@ public class WikiMarkupParser {
     
     
     
+    
+    
 
-    private void collectTitles() {
+    private  void collectBolds() {
 
         Pattern pattern = Pattern.compile(REGEX_TITLE);
         Matcher matcher = pattern.matcher(text);
@@ -76,12 +73,12 @@ public class WikiMarkupParser {
             temp=temp.trim();
             temp = temp.toLowerCase();
             System.out.println(temp);
-            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.TITLE));
+            wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.BOLD));
         }
         text = text.replaceAll(REGEX_TITLE, "");
     }
 
-    private void collectH1() {
+    private  void collectH1() {
 
         Pattern pattern = Pattern.compile(REGEX_H1);
         Matcher matcher = pattern.matcher(text);
@@ -100,7 +97,7 @@ public class WikiMarkupParser {
         text = text.replaceAll(REGEX_H1, "");
     }
 
-    private void collectH2() {
+    private  void collectH2() {
 
         Pattern pattern = Pattern.compile(REGEX_H2);
         Matcher matcher = pattern.matcher(text);
@@ -119,7 +116,7 @@ public class WikiMarkupParser {
         text = text.replaceAll(REGEX_H2, "");
     }
 
-    private void collectH3() {
+    private  void collectH3() {
 
         Pattern pattern = Pattern.compile(REGEX_H3);
         Matcher matcher = pattern.matcher(text);
