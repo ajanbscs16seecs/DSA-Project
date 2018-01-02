@@ -5,14 +5,36 @@
  */
 package DataIndexed;
 
+import java.util.ArrayList;
 import java.util.List;
+import org.dizitart.no2.objects.Id;
 
 /**
  *
  * @author Arif
  */
 public class XWord {
-    List<LocationAndType> instances;//the size of list is the frequency....
+    
+    @Id
     String word;
+    
+    List<Long> pagesContainingThis;
+
+    public XWord(String word, List<Long> pagesContainingThis) {
+        this.word = word;
+        this.pagesContainingThis = pagesContainingThis;
+    }
+    
+    
+    
+    public void appendNextPage(long pageId){
+        if(this.pagesContainingThis==null){
+            this.pagesContainingThis = new ArrayList<Long>();
+        }
+        this.pagesContainingThis.add(pageId);
+    }
+    
+    
+    
     
 }

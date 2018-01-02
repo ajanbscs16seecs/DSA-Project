@@ -5,11 +5,13 @@
  */
 package DataIndexed;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Arif
  */
-public class LocationAndType {
+public class LocationAndType implements Serializable{
     int location;
     int type;
 

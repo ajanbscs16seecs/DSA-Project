@@ -9,9 +9,15 @@ import Data.Page;
 import Data.Word;
 import DataIndexed.Index;
 import DataIndexed.XPage;
+import DataIndexed.XWord;
 import Indexers.Indexer;
+import Indexers.Indexer.IndexingCallbacks;
 import java.io.File;
 import java.util.List;
+import org.dizitart.no2.Nitrite;
+import org.dizitart.no2.NitriteId;
+import org.dizitart.no2.WriteResult;
+import org.dizitart.no2.objects.ObjectRepository;
 import parsers.WikiMarkupParser;
 import parsers.WikiXMLParser;
 import parsers.WikiXMLParser.WikiXMLParserCallback;
@@ -20,7 +26,7 @@ import parsers.WikiXMLParser.WikiXMLParserCallback;
  *
  * @author Arif
  */
-public class DSA {
+public class DSA implements IndexingCallbacks{
     
     
     
@@ -43,8 +49,9 @@ public class DSA {
 
 
 
+        
 
-
+        
 
 
 
@@ -55,14 +62,29 @@ public class DSA {
         
     }
     
-    void  indexingProcedure(){
+    
+    void initIndexing(){
+        Nitrite db = Nitrite.builder()
+        .compressed()
+        .filePath("/tmp/test.db")
+        .openOrCreate("user", "password");
         
+        ObjectRepository<XPage> pageMapRepository = db.getRepository(XPage.class);
+        ObjectRepository<XWord> invertedIndex = db.getRepository(XWord.class);
         
-        
-        
-        final Indexer indexer = new Indexer(new Index());//TODO: temporary...
+        final Indexer indexer = new Indexer(pageMapRepository,invertedIndex,this);//TODO: temporary...
         
         WikiXMLParser xmlParser = new WikiXMLParser(new File("path to file"), (WikiXMLParserCallback)indexer);
 
+        
+               
+    }
+
+    public void onProgress() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void done() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
