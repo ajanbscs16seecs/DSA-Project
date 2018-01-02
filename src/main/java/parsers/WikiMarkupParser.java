@@ -23,7 +23,7 @@ public class WikiMarkupParser {
     public static String REGEX_H1 = "[\\=]{1}[a-zA-Z)0-9\\s]+[\\=]{1}";
     public static String REGEX_H2 = "[\\=]{2}[a-zA-Z)0-9\\s]+[\\=]{2}";
     public static String REGEX_H3 = "[\\=]{3}[a-zA-Z)0-9\\s]+[\\=]{3}";
-    public static String REGEX_TITLE = "[']{3}[a-zA-Z)0-9\\s]+[']{3}";
+    public static String REGEX_BOLD = "[']{3}[a-zA-Z)0-9\\s]+[']{3}";
     
     
 
@@ -63,7 +63,7 @@ public class WikiMarkupParser {
 
     private  void collectBolds() {
 
-        Pattern pattern = Pattern.compile(REGEX_TITLE);
+        Pattern pattern = Pattern.compile(REGEX_BOLD);
         Matcher matcher = pattern.matcher(text);
 
         while (matcher.find()) {
@@ -75,7 +75,7 @@ public class WikiMarkupParser {
             System.out.println(temp);
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.BOLD));
         }
-        text = text.replaceAll(REGEX_TITLE, "");
+        text = text.replaceAll(REGEX_BOLD, "");
     }
 
     private  void collectH1() {

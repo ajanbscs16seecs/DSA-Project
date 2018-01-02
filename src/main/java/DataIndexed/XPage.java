@@ -5,15 +5,21 @@
  */
 package DataIndexed;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
+import org.dizitart.no2.objects.Id;
 
 /**
  *
  * @author Arif
  */
-public class XPage {
-    int pageId;
+public class XPage implements Serializable{
+    
+    @Id
+    long pageId;
+    
+    
     String title;
     int importanceFactor;
     HashMap<String,List<LocationAndType>> wordInstances;//for a word the page will have multiple instances represented by location and type
@@ -27,7 +33,7 @@ public class XPage {
     
     
     
-    public int getPageId() {
+    public long getPageId() {
         return pageId;
     }
 

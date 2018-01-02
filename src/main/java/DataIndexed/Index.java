@@ -15,11 +15,12 @@ import java.util.List;
  *
  * @author Arif
  */
-public class Index implements Serializable{
+public class Index {
     
     
     public HashMap<Integer,XPage> pageMap;//pagesId->words
     public HashMap<String,List<Integer>> invertedIndex;//word_strings->pages
+    
     
     
     
