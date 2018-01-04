@@ -10,22 +10,20 @@ import java.io.File;
 
 /**
  *
- * @author Arif
+ * @author Hassan
  */
 public class WikiXMLParser {
     
     
     
     Page currentPage;
-    
-    
-    WikiXMLParserCallback callback;
+    WikiXMLParserCallbackReciever wikiXMLParserCallbackReciever;
     
     
     
     //the path will be given to you..... but for now just edit DSA.java main and edit the path...
-    public WikiXMLParser(File xmlFileReference,WikiXMLParserCallback callback) {
-        this.callback = callback;
+    public WikiXMLParser(File xmlFileReference,WikiXMLParserCallbackReciever callback) {
+        this.wikiXMLParserCallbackReciever = callback;
     }
     
     
@@ -37,7 +35,7 @@ public class WikiXMLParser {
     
     //when the file ends call callback.onAllParsed()
     
-    public interface WikiXMLParserCallback{
+    public interface WikiXMLParserCallbackReciever{
         void onNewPageParsed(Page page);
         void onAllParsed();
     }

@@ -21,13 +21,13 @@ import org.dizitart.no2.objects.ObjectRepository;
 import org.dizitart.no2.objects.filters.ObjectFilters;
 import parsers.WikiMarkupParser;
 import parsers.WikiXMLParser;
-import parsers.WikiXMLParser.WikiXMLParserCallback;
+import parsers.WikiXMLParser.WikiXMLParserCallbackReciever;
 
 /**
  *
  * @author Arif
  */
-public class Indexer implements WikiXMLParserCallback {
+public class Indexer implements WikiXMLParserCallbackReciever {
 
     IndexingCallbacks callback;
     ObjectRepository pageMapRepository;
@@ -82,6 +82,7 @@ public class Indexer implements WikiXMLParserCallback {
         return wordInstances;
     }
 
+    @Override
     public void onNewPageParsed(Page page) {
         List<Word> wordsReport = new WikiMarkupParser(page).process();
         //int pageId, String title, String importanceFactor, HashMap<String, List<LocationAndType>> wordInstances

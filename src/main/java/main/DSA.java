@@ -20,7 +20,7 @@ import org.dizitart.no2.WriteResult;
 import org.dizitart.no2.objects.ObjectRepository;
 import parsers.WikiMarkupParser;
 import parsers.WikiXMLParser;
-import parsers.WikiXMLParser.WikiXMLParserCallback;
+import parsers.WikiXMLParser.WikiXMLParserCallbackReciever;
 
 /**
  *
@@ -74,7 +74,7 @@ public class DSA implements IndexingCallbacks{
         
         final Indexer indexer = new Indexer(pageMapRepository,invertedIndex,this);//TODO: temporary...
         
-        WikiXMLParser xmlParser = new WikiXMLParser(new File("path to file"), (WikiXMLParserCallback)indexer);
+        WikiXMLParser xmlParser = new WikiXMLParser(new File("path to file"), (WikiXMLParserCallbackReciever)indexer);
 
         
                
