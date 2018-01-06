@@ -33,6 +33,16 @@ public class XWord {
         }
         this.pagesContainingThis.add(pageId);
     }
+
+    public String getWord() {
+        return word;
+    }
+
+    public List<Long> getPagesContainingThis() {
+        return pagesContainingThis;
+    }
+    
+    
     
     
     
