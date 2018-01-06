@@ -87,8 +87,10 @@ public class Indexer implements WikiXMLParserCallbackReciever {
         List<Word> wordsReport = new WikiMarkupParser(page).process();
         //int pageId, String title, String importanceFactor, HashMap<String, List<LocationAndType>> wordInstances
         XPage xpage = new XPage(page.getPageId(), page.getPageTitle(), 1, generateHashMapOfWords(wordsReport));
+        
         this.next(xpage);
-        this.callback.onProgress();
+        
+        this.callback.onProgress((int)xpage.getPageId());
     }
 
     public void onAllParsed() {
@@ -103,8 +105,7 @@ public class Indexer implements WikiXMLParserCallbackReciever {
 
     public interface IndexingCallbacks {
 
-        void onProgress();
-
+        void onProgress(int progress);
         void done();
     }
 

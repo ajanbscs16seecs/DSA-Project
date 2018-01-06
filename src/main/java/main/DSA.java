@@ -48,15 +48,8 @@ public class DSA implements IndexingCallbacks{
 
 
 
-
-        
-
-        
-
-
-
-
-
+        DSA dsa = new DSA();
+        dsa.initIndexing();
         
         
         
@@ -66,7 +59,7 @@ public class DSA implements IndexingCallbacks{
     void initIndexing(){
         Nitrite db = Nitrite.builder()
         .compressed()
-        .filePath("/tmp/test.db")
+        .filePath("test.db")
         .openOrCreate("user", "password");
         
         ObjectRepository<XPage> pageMapRepository = db.getRepository(XPage.class);
@@ -75,13 +68,15 @@ public class DSA implements IndexingCallbacks{
         final Indexer indexer = new Indexer(pageMapRepository,invertedIndex,this);//TODO: temporary...
         
         WikiXMLParser xmlParser = new WikiXMLParser(new File("path to file"), (WikiXMLParserCallbackReciever)indexer);
+        
+        xmlParser.init();
 
         
                
     }
-
-    public void onProgress() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    int count=0;
+    public void onProgress(int id) {
+        System.out.println(id);
     }
 
     public void done() {

@@ -72,7 +72,6 @@ public class WikiMarkupParser {
             temp=temp.replace("'", "");
             temp=temp.trim();
             temp = temp.toLowerCase();
-            System.out.println(temp);
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.BOLD));
         }
         text = text.replaceAll(REGEX_BOLD, "");
@@ -86,11 +85,9 @@ public class WikiMarkupParser {
         while (matcher.find()) {
 
             String temp = matcher.group();
-            System.out.println(temp);
             temp=temp.replace("=", "");
             temp=temp.trim();
             temp = temp.toLowerCase();
-            System.out.println(temp);
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.H1));
         }
         
@@ -105,11 +102,9 @@ public class WikiMarkupParser {
         while (matcher.find()) {
 
             String temp = matcher.group();
-            System.out.println(temp);
             temp=temp.replace("=", "");
             temp=temp.trim();
             temp = temp.toLowerCase();
-            System.out.println(temp);
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.H2));
         }
         
@@ -124,11 +119,9 @@ public class WikiMarkupParser {
         while (matcher.find()) {
 
             String temp = matcher.group();
-            System.out.println(temp);
             temp=temp.replace("=", "");
             temp=temp.trim();
             temp = temp.toLowerCase();
-            System.out.println(temp);
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.H3));
         }
         text = text.replaceAll(REGEX_H3, "");
@@ -143,7 +136,6 @@ public class WikiMarkupParser {
 
             String temp = matcher.group();
             temp = temp.toLowerCase();
-            System.out.println(temp);
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.SIMPLE));
         }
     }
