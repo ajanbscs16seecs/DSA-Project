@@ -62,7 +62,7 @@ public class ImportanceFactorProcessor {
         double average = 0;
         float total = 0;
         for (int i = 0; i < title_word_ratio.size(); i++) {
-            total += title_word_ratio.indexOf(i);
+            total += title_word_ratio.get(i);
         }
         average = total/ title_word_ratio.size();
         return average;
