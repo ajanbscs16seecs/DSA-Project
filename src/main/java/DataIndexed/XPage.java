@@ -26,7 +26,7 @@ public class XPage implements Serializable{
     
     
     String title;
-    int importanceFactor;//out of 10
+    double importanceFactor;//out of 10
     HashMap<String,List<LocationAndType>> wordInstances;//for a word the page will have multiple instances represented by location and type
 
     public XPage(int pageId, String title, int importanceFactor, HashMap<String, List<LocationAndType>> wordInstances) {
@@ -46,7 +46,7 @@ public class XPage implements Serializable{
         return wordInstances;
     }
 
-    public void setImportanceFactor(int importanceFactor) {
+    public void setImportanceFactor(double importanceFactor) {
         this.importanceFactor = importanceFactor;
     }
 
@@ -54,7 +54,7 @@ public class XPage implements Serializable{
         return title;
     }
 
-    public int getImportanceFactor() {
+    public double getImportanceFactor() {
         return importanceFactor;
     }
 
