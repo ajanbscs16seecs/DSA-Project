@@ -18,6 +18,11 @@ public class XPage implements Serializable{
     
     @Id
     long pageId;
+
+    public XPage() {
+    }
+    
+    
     
     
     String title;
@@ -57,6 +62,12 @@ public class XPage implements Serializable{
         return wordInstances;
     }
 
+    @Override
+    public String toString() {
+        return "XPage{" + "pageId=" + pageId + ", title=" + title + ", importanceFactor=" + importanceFactor + ", wordInstances=" + wordInstances + '}';
+    }
+
+    
     
     
     

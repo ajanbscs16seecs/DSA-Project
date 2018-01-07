@@ -64,7 +64,7 @@ public class SearchHelper {
         List<XPage> pages = new ArrayList<XPage>();
         
         for(int i=0; i<xword.getPagesContainingThis().size() && i<10;i++){
-            pages.add((XPage)this.pageMapRepository.getById(NitriteId.createId(xword.getPagesContainingThis().get(i))));
+            pages.add((XPage)this.pageMapRepository.getById(NitriteId.createId(xword.getPagesContainingThis().get(i).getPageId())));
         }
         
         return pages;
@@ -73,6 +73,7 @@ public class SearchHelper {
 
     public List<XPage> searchMultiple(List<String> queryWords) {
 
+        return null;
     }
 
     private XWord getXWord(String word) {

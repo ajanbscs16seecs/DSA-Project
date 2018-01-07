@@ -59,7 +59,7 @@ public class DSA implements IndexingCallbacks{
     void initIndexing(){
         Nitrite db = Nitrite.builder()
         .compressed()
-        .filePath("test.db")
+        .filePath("test2.db")
         .openOrCreate("user", "password");
         
         ObjectRepository<XPage> pageMapRepository = db.getRepository(XPage.class);

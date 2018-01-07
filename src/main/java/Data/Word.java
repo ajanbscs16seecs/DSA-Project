@@ -13,13 +13,18 @@ public class Word {
     
     
     public static  final class Type{
-        public static  final int TITLE=1000;
+        public static  final int TITLE=0;
         public static  final int H1=1;
         public static  final int H2=2;
         public static  final int H3=3;
-        public static  final int SIMPLE=0;
-        public static  final int LINK=10;        
-        public static  final int BOLD=100;
+        public static  final int SIMPLE=4;
+        public static  final int LINK=5;        
+        public static  final int BOLD=6;
+          
+        
+        public static  final int EMAIL_ADDRESS=10005;
+        public static  final int PHONE_NO=10006;
+        
     }
     
     

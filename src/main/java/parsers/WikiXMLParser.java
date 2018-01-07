@@ -31,7 +31,7 @@ public class WikiXMLParser {
     public WikiXMLParser(File xmlFileReference, WikiXMLParserCallbackReciever callback) {
         this.wikiXMLParserCallbackReciever = callback;
     }
-    
+    int count=0;
     public void init()
     {
          try {
@@ -88,6 +88,11 @@ public class WikiXMLParser {
                         title = "";
                         id = "";
                         text = "";    
+                        count++;
+                        
+//                        if(count>15){
+//                            System.exit(0);
+//                        }
                     }
                 }
 
@@ -117,7 +122,7 @@ public class WikiXMLParser {
                 
                 
             };
-            saxParser.parse("simplewiki-latest-pages-articles.xml", handler);
+            saxParser.parse("wiki.xml", handler);
         } catch (SAXException ex) {
             Logger.getLogger(Parser.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

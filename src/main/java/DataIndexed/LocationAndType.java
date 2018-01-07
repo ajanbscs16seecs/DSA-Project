@@ -15,6 +15,12 @@ public class LocationAndType implements Serializable{
     int location;
     int type;
 
+    public LocationAndType() {
+    }
+    
+    
+    
+
     public LocationAndType(int location, int type) {
         this.location = location;
         this.type = type;
@@ -26,6 +32,11 @@ public class LocationAndType implements Serializable{
 
     public int getType() {
         return type;
+    }
+
+    @Override
+    public String toString() {
+        return "LocationAndType{" + "location=" + location + ", type=" + type + '}';
     }
     
     
