@@ -12,12 +12,15 @@ import DataIndexed.XPage;
 import DataIndexed.XWord;
 import Engine.Indexer;
 import Engine.Indexer.IndexingCallbacks;
+import Engine.SearchHelper;
 import java.io.File;
 import java.util.List;
 import org.dizitart.no2.Nitrite;
 import org.dizitart.no2.NitriteId;
 import org.dizitart.no2.WriteResult;
+import org.dizitart.no2.objects.Cursor;
 import org.dizitart.no2.objects.ObjectRepository;
+import org.dizitart.no2.objects.filters.ObjectFilters;
 import parsers.WikiMarkupParser;
 import parsers.WikiXMLParser;
 import parsers.WikiXMLParser.WikiXMLParserCallbackReciever;
@@ -49,12 +52,44 @@ public class DSA implements IndexingCallbacks{
 
 
         DSA dsa = new DSA();
-        dsa.initIndexing();
+        //dsa.initIndexing();
         
+        dsa.searching();
         
         
     }
     
+    void searching(){
+        Nitrite db = Nitrite.builder()
+        .compressed()
+        .filePath("test2.db")
+        .openOrCreate("user", "password");
+        
+        ObjectRepository<XPage> pageMapRepository = db.getRepository(XPage.class);
+        ObjectRepository<XWord> invertedIndex = db.getRepository(XWord.class);
+        
+        SearchHelper searchHelper  = new SearchHelper(pageMapRepository,invertedIndex);
+        
+        List<XPage> result =searchHelper.search("april");
+        for(int i = 0; i<result.size();i++){
+            System.out.println("https://simple.wikipedia.org/wiki/"+result.get(i).getTitle());
+            System.out.println(result.get(i).getWordInstances().get("april").size());
+        }
+        
+        
+        
+//        
+//        Cursor<XWord> cursor = invertedIndex.find(ObjectFilters.eq("word", "a"));
+//
+//        
+//        XWord xword = cursor.firstOrDefault();
+////                
+//        System.out.println(xword.getPagesContainingThis().size());
+        
+        
+        
+        
+    }
     
     void initIndexing(){
         Nitrite db = Nitrite.builder()
@@ -70,10 +105,16 @@ public class DSA implements IndexingCallbacks{
         WikiXMLParser xmlParser = new WikiXMLParser(new File("path to file"), (WikiXMLParserCallbackReciever)indexer);
         
         xmlParser.init();
+        
+        
+        
 
         
                
     }
+    
+    
+    
     int count=0;
     public void onProgress(int id) {
         System.out.println(id);

@@ -63,9 +63,16 @@ public class SearchHelper {
         
         List<XPage> pages = new ArrayList<XPage>();
         
-        for(int i=0; i<xword.getPagesContainingThis().size() && i<10;i++){
-            pages.add((XPage)this.pageMapRepository.getById(NitriteId.createId(xword.getPagesContainingThis().get(i).getPageId())));
+        for(int i=0; i<xword.getPagesContainingThis().size() && i<50;i++){
+            long id = xword.getPagesContainingThis().get(i).getPageId();
+            
+            Cursor<XPage> cursor = this.pageMapRepository.find(ObjectFilters.eq("pageId", id), FindOptions.limit(0, 1));
+            XPage xpage = cursor.firstOrDefault();
+            System.out.println(xpage.toString());
+            pages.add(xpage);
         }
+        
+        
         
         return pages;
 
@@ -77,7 +84,7 @@ public class SearchHelper {
     }
 
     private XWord getXWord(String word) {
-        Cursor<XWord> cursor = this.invertedIndexRepository.find(ObjectFilters.gt("word", word), FindOptions.limit(0, 1));
+        Cursor<XWord> cursor = this.invertedIndexRepository.find(ObjectFilters.eq("word", word), FindOptions.limit(0, 1));
 
         return cursor.firstOrDefault();
     }

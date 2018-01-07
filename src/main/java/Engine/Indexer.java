@@ -49,6 +49,8 @@ public class Indexer implements WikiXMLParserCallbackReciever {
 
     public void next(XPage xpage) {
         //System.out.println(xpage.toString());
+        
+        
         this.pageMapRepository.insert(xpage);
         this.addToInvertedIndex(xpage);
         this.callback.onProgress((int) xpage.getPageId());
