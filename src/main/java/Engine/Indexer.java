@@ -7,7 +7,6 @@ package Engine;
 
 import Data.Page;
 import Data.Word;
-import DataIndexed.Index;
 import DataIndexed.LocationAndType;
 import DataIndexed.PageAndFrequency;
 import DataIndexed.XPage;
@@ -141,7 +140,6 @@ public class Indexer implements WikiXMLParserCallbackReciever {
             this.invertedIndexRepository.insert(temp);
             System.out.println(count++);
         }
-        
     }
 
     public void onAllParsed() {

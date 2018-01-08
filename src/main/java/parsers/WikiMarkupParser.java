@@ -7,6 +7,7 @@ package parsers;
 
 import Data.Page;
 import Data.Word;
+import Engine.Util;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -30,8 +31,10 @@ public class WikiMarkupParser {
     private String text;
     private List<Word> wordsFound;
 
+    Page page;
     public WikiMarkupParser(Page page) {
         text = page.getPageText();
+        this.page=page;
         wordsFound =  new ArrayList<Word>();
         wordsFound.add(new Word(wordsFound.size(), page.getPageTitle(), Word.Type.TITLE));
     }
@@ -42,7 +45,7 @@ public class WikiMarkupParser {
     
     
     public List<Word> process(){
-        
+        collectTitles();
         collectBolds();
         collectH3();
         collectH2();
@@ -138,6 +141,15 @@ public class WikiMarkupParser {
             temp = temp.toLowerCase();
             wordsFound.add(new Word(wordsFound.size(), temp, Word.Type.SIMPLE));
         }
+    }
+
+    private void collectTitles() {
+        List<String> titles = Util.toWords(this.page.getPageText());
+        for(String title: titles){
+            
+        this.wordsFound.add(new Word(0,title,Word.Type.TITLE));
+        }
+        
     }
 
 }

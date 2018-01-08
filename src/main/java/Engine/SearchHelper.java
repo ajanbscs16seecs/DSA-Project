@@ -140,11 +140,12 @@ public class SearchHelper {
                 }
             }
             sortedCommonList.add(commonList.get(maxI));
+           
             commonList.remove(maxI);
         }
         
         
-        for (int i = 0; i < sortedCommonList.size() && i < 1000; i++) {
+        for (int i = 0; i < sortedCommonList.size() && i < 100; i++) {
             long id = sortedCommonList.get(i).getPageId();
 
             Cursor<XPage> cursor = this.pageMapRepository.find(ObjectFilters.eq("pageId", id), FindOptions.limit(0, 1));
